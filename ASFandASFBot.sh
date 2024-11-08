@@ -3,50 +3,50 @@
 # Изменение репозиториев Termux
 termux-change-repo
 
-# Обновление пакетов
-pkg upgrade -y 
+# Обновление пакетов и установка необходимых пакетов Termux
+pkg upgrade -y
+pkg install -y proot-distro android-tools git make clang python
 
-# Установка proot-distro
-pkg install proot-distro -y 
+# Установка и настройка хранилища
+termux-setup-storage
 
-# Установка дистрибутива Ubuntu
+# Ожидание для подтверждения доступа к хранилищу
+sleep 10
+
+# Установка дистрибутива Ubuntu в proot-distro
 proot-distro install ubuntu
 
-# Настройка хранилища
-termux-setup-storage 
+# Переход в папку загрузок и копирование ASF в корень Ubuntu
+cd storage/downloads
+cp -r ASF /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/root/
 
-# Ожидание 10 секунд
-sleep 10 
+# Выполнение команд внутри Ubuntu для установки и настройки
+proot-distro login ubuntu <<EOF
+  # Обновление пакетов в Ubuntu
+  apt update && apt upgrade -y
 
-# Переход в директорию downloads
-cd storage/downloads 
+  # Установка .NET SDK, Python и pip с выбором временной зоны
+  ln -fs /usr/share/zoneinfo/Europe/Kaliningrad /etc/localtime
+  dpkg-reconfigure -f noninteractive tzdata
+  apt install -y dotnet-sdk-8.0 python3 python3-pip
 
-# Копирование ASF
-cp ASF -r /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/root/ 
+  # Создание символических ссылок на ASF и ASFBot
+  ln -s /root/ASF/ASF-generic/ArchiSteamFarm.sh /usr/local/bin/ArchiSteamFarm.sh
+  ln -s /root/ASF/ASFBot-master/ASFBot-master/bot.py /usr/local/bin/bot.py
 
-# Обновление пакетов в Ubuntu
-proot-distro login ubuntu -- apt update 
+  # Установка зависимостей для ASFBot
+  pip install -r /root/ASF/ASFBot-master/ASFBot-master/requirements.txt --break-system-packages
+EOF
 
-# Обновление пакетов в Ubuntu
-proot-distro login ubuntu -- apt upgrade -y 
+# Настройка переменной окружения для .NET в Ubuntu
+echo "export DOTNET_GCHeapHardLimit=1C0000000" > /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/etc/profile.d/dotnet-env.sh
 
-# Установка dotnet-sdk-8.0 в Ubuntu
-proot-distro login ubuntu -- apt-get install -y dotnet-sdk-8.0 
+# Клонирование и установка mcrcon
+git clone https://github.com/Tiiffi/mcrcon.git
+cd mcrcon
+make
+cp mcrcon /data/data/com.termux/files/usr/bin
+cd ..
 
-# Создание символической ссылки
-proot-distro login ubuntu -- ln -s /root/ASF/ASF-generic/ArchiSteamFarm.sh ArchiSteamFarm.sh 
-
-# Установка pip и python3
-proot-distro login ubuntu -- apt install -y python3 python3-pip 
-
-# Установка зависимостей из requirements.txt
-proot-distro login ubuntu -- pip install -r /root/ASF/ASFBot-master/ASFBot-master/requirements.txt --break-system-packages
-
-# Создание символической ссылки для bot.py
-proot-distro login ubuntu -- ln -s /root/ASF/ASFBot-master/ASFBot-master/bot.py bot.py
-
-# Переход в нужную директорию для настройки окружения
-cd /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/etc/profile.d/
-
-# Запись строки в файл dotnet-env.sh
-echo "export DOTNET_GCHeapHardLimit=1C0000000" > dotnet-env.sh
+# Установка модуля mcstatus для Python
+pip install mcstatus==6.5.0
