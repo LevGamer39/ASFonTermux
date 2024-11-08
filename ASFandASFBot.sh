@@ -4,7 +4,7 @@
 termux-change-repo
 
 # Обновление пакетов и установка необходимых пакетов Termux
-pkg upgrade -y
+yes | pkg upgrade -y
 pkg install -y proot-distro android-tools git make clang python
 
 # Установка и настройка хранилища
