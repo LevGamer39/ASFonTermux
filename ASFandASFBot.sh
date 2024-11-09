@@ -31,8 +31,8 @@ proot-distro login ubuntu <<EOF
   apt install -y dotnet-sdk-8.0 python3 python3-pip
 
   # Создание символических ссылок на ASF и ASFBot
-  ln -s /root/ASF/ASF-generic/ArchiSteamFarm.sh /usr/local/bin/ArchiSteamFarm.sh
-  ln -s /root/ASF/ASFBot-master/ASFBot-master/bot.py /usr/local/bin/bot.py
+  ln -s /root/ASF/ASF-generic/ArchiSteamFarm.sh ArchiSteamFarm.sh
+  ln -s /root/ASF/ASFBot-master/ASFBot-master/bot.py bot.py
 
   # Установка зависимостей для ASFBot
   pip install -r /root/ASF/ASFBot-master/ASFBot-master/requirements.txt --break-system-packages
