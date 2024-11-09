@@ -1,0 +1,1 @@
+pd login ubuntu -- python3 bot.py

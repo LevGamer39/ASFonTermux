@@ -1,0 +1,1 @@
+pd login ubuntu -- bash ArchiSteamFarm.sh
