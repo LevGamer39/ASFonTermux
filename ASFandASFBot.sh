@@ -54,4 +54,4 @@ pip install mcstatus==6.5.0
 #Установка zsh
 curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/removezsh.sh -o removezsh.sh && chmod +x removezsh.sh
 
-curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/zsh.sh -o zsh.sh && chmod +x zsh.sh && ./zsh.sh
+curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/zsh.sh -o zsh.sh && chmod +x zsh.sh && bash zsh.sh
