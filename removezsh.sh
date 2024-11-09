@@ -1,17 +1,17 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# Удаление Zsh и зависимостей
+# Удаление Zsh
 apt remove --purge -y zsh
 
 # Удаление файлов и каталогов, связанных с Zsh
 rm -rf $HOME/.oh-my-zsh
-rm -f $HOME/.zshrc
-rm -f $HOME/.zsh_history
-rm -f $HOME/.zcompdump*
-rm -f $HOME/.zsh-completions
-rm -f $HOME/.zsh-autosuggestions
-rm -f $HOME/.zsh-syntax-highlighting
-rm -f $HOME/.zsh-history-substring-search
+rm -rf $HOME/.zshrc
+rm -rf $HOME/.zsh_history
+rm -rf $HOME/.zcompdump*
+rm -rf $HOME/.zsh-completions
+rm -rf $HOME/.zsh-autosuggestions
+rm -rf $HOME/.zsh-syntax-highlighting
+rm -rf $HOME/.zsh-history-substring-search
 
 # Восстановление оболочки на bash
 chsh -s bash
