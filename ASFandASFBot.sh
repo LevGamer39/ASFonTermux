@@ -52,7 +52,7 @@ cd ..
 pip install mcstatus==6.5.0
 
 #Код query_minecraft
-curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/query_minecraft.py-o query_minecraft.py
+curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/query_minecraft.py -o query_minecraft.py
 
 #Установка zsh
 curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/removezsh.sh -o removezsh.sh && chmod +x removezsh.sh
