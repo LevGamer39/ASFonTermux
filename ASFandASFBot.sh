@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Установка и настройка хранилища
+termux-setup-storage
+
+# Ожидание для подтверждения доступа к хранилищу
+sleep 10
+
 # Изменение репозиториев Termux
 termux-change-repo
 
@@ -9,12 +15,6 @@ pkg install -y proot-distro android-tools git make clang python termux-tools neo
 apt install php wget tor -y
 gem update
 gem update --system 3.5.23
-
-# Установка и настройка хранилища
-termux-setup-storage
-
-# Ожидание для подтверждения доступа к хранилищу
-sleep 10
 
 # Установка дистрибутива Ubuntu в proot-distro
 proot-distro install ubuntu
