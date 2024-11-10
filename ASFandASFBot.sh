@@ -21,7 +21,7 @@ proot-distro install ubuntu
 # Переход в папку загрузок и копирование ASF в корень Ubuntu
 cd storage/downloads
 cp -r ASF /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/ubuntu/root/
-
+cd -
 # Выполнение команд внутри Ubuntu для установки и настройки
 proot-distro login ubuntu <<EOF
   # Обновление пакетов в Ubuntu
@@ -48,7 +48,7 @@ git clone https://github.com/Tiiffi/mcrcon.git
 cd mcrcon
 make
 cp mcrcon /data/data/com.termux/files/usr/bin
-cd ..
+cd -
 
 # Установка модуля mcstatus и т.д для Python
 pip install mcstatus==6.5.0
@@ -68,19 +68,21 @@ curl -H "Authorization: token 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" -sL http
 
 curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/query_minecraft.sh -o query_minecraft.sh
 
-cd ..
+cd -
 
 #Установка zsh
 curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/removezsh.sh -o removezsh.sh && chmod +x removezsh.sh
 
 curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/zsh.sh -o zsh.sh && chmod +x zsh.sh && bash zsh.sh
 
+cd -
+
 # Установка lolcat
 wget https://github.com/busyloop/lolcat/archive/master.zip
 unzip master.zip
 cd lolcat-master/bin
 gem install lolcat
-cd ..
+cd -
 rm -f /data/data/com.termux/files/usr/etc/motd
 
 # Добавление команды neofetch в zshrc
