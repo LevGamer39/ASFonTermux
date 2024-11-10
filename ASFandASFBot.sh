@@ -5,8 +5,9 @@ termux-change-repo
 
 # Обновление пакетов и установка необходимых пакетов Termux
 yes | pkg upgrade -y
-pkg install -y proot-distro android-tools git make clang python termux-tools 
+pkg install -y proot-distro android-tools git make clang python termux-tools neofetch ruby
 apt install php wget tor -y
+gem update
 
 # Установка и настройка хранилища
 termux-setup-storage
@@ -73,3 +74,21 @@ cd ..
 curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/removezsh.sh -o removezsh.sh && chmod +x removezsh.sh
 
 curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/zsh.sh -o zsh.sh && chmod +x zsh.sh && bash zsh.sh
+
+# Установка lolcat
+wget https://github.com/busyloop/lolcat/archive/master.zip
+unzip master.zip
+cd lolcat-master/bin
+gem install lolcat
+cd ..
+rm -f /data/data/com.termux/files/usr/etc/motd
+
+# Добавление команды neofetch в zshrc
+echo 'neofetch --ascii_distro android_small | lolcat' >> ~/.zshrc
+
+
+
+
+
+# Запуск Zsh в конце
+exec zsh
