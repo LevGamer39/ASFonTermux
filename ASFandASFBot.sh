@@ -11,7 +11,7 @@ termux-change-repo
 
 # Обновление пакетов и установка необходимых пакетов Termux
 yes | pkg upgrade -y
-pkg install -y proot-distro android-tools git make clang python termux-tools neofetch ruby openssh
+pkg install -y proot-distro android-tools git make clang python termux-tools neofetch ruby openssh build-essential
 apt install php wget tor -y
 gem update
 gem update --system 3.5.23
