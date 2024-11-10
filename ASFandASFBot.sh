@@ -8,6 +8,7 @@ yes | pkg upgrade -y
 pkg install -y proot-distro android-tools git make clang python termux-tools neofetch ruby openssh
 apt install php wget tor -y
 gem update
+gem update --system 3.5.23
 
 # Установка и настройка хранилища
 termux-setup-storage
