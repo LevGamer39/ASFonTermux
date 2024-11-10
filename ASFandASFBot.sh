@@ -76,8 +76,6 @@ curl -H "Authorization: token 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" -sL http
 
 curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/zsh.sh -o zsh.sh && chmod +x zsh.sh && bash zsh.sh
 
-cd -
-
 # Установка lolcat
 wget https://github.com/busyloop/lolcat/archive/master.zip
 unzip master.zip
