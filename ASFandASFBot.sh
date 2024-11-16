@@ -11,7 +11,7 @@ termux-change-repo
 
 # Обновление пакетов и установка необходимых пакетов Termux
 yes | pkg upgrade -y
-pkg install -y proot-distro android-tools git make clang python termux-tools neofetch ruby openssh build-essential
+pkg install -y proot-distro android-tools git make clang python termux-tools neofetch ruby openssh build-essential ffmpeg
 apt install php wget -y
 gem update
 gem update --system 3.5.23
@@ -54,6 +54,7 @@ cd ~
 # Установка модуля mcstatus и т.д для Python
 pip install mcstatus==6.5.0
 pip install colorama
+pip install yt-dlp
 
 #Код query_minecraft
 curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/query_minecraft.py -o query_minecraft.py
