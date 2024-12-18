@@ -73,10 +73,6 @@ setup_asf_in_distro() {
         wget https://dot.net/v1/dotnet-install.sh
         chmod +x dotnet-install.sh
         ./dotnet-install.sh --channel 9.0
-        export PATH=$HOME/.dotnet:$PATH
-        echo 'export PATH=$HOME/.dotnet:$PATH' >> ~/.bashrc
-        rm -f dotnet-install.sh
-
 
         apt install -y python3 python3-pip
         ln -s /root/ASF/ASF-generic/ArchiSteamFarm.sh ArchiSteamFarm.sh
@@ -84,7 +80,9 @@ setup_asf_in_distro() {
         pip install -r /root/ASF/ASFBot-master/ASFBot-master/requirements.txt --break-system-packages
 EOF
 
-    echo "export DOTNET_GCHeapHardLimit=1C0000000" > /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/$distro_name/etc/profile.d/dotnet-env.sh
+    # Установка переменных окружения
+    echo 'export DOTNET_GCHeapHardLimit=1C0000000' > /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/$distro_name/etc/profile.d/dotnet-env.sh
+    echo 'export PATH=$HOME/.dotnet:$PATH' >> /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/$distro_name/etc/profile.d/dotnet-env.sh
 }
 
 # Функция: Установка mcrcon
