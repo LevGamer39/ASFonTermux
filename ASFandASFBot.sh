@@ -47,7 +47,7 @@ change_repo() {
 # Функция: Установка базовых пакетов Termux
 install_termux_packages() {
     yes | pkg upgrade -y
-    pkg install -y proot-distro android-tools git make clang python termux-tools neofetch ruby openssh build-essential ffmpeg
+    pkg install -y proot-distro android-tools git make clang python termux-tools neofetch ruby openssh build-essential ffmpeg tor
     apt install php wget -y
     gem update
     gem update --system 3.5.23
