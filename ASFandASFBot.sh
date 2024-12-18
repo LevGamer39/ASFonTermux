@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Переменная для Authorization token
+AUTH_TOKEN="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"
+
 # Функция: Настройка хранилища
 setup_storage() {
     termux-setup-storage
@@ -52,11 +55,18 @@ setup_asf_in_distro() {
         apt update && apt upgrade -y
         ln -fs /usr/share/zoneinfo/Europe/Kaliningrad /etc/localtime
         dpkg-reconfigure -f noninteractive tzdata
-        apt install -y dotnet-sdk-9.0 python3 python3-pip
 
+        # Установка .NET вручную
+        wget https://dot.net/v1/dotnet-install.sh
+        chmod +x dotnet-install.sh
+        ./dotnet-install.sh --channel 9.0
+        echo 'export PATH=\$HOME/.dotnet:\$PATH' >> ~/.bashrc
+        source ~/.bashrc
+        rm -f dotnet-install.sh
+
+        apt install -y python3 python3-pip
         ln -s /root/ASF/ASF-generic/ArchiSteamFarm.sh ArchiSteamFarm.sh
         ln -s /root/ASF/ASFBot-master/ASFBot-master/bot.py bot.py
-
         pip install -r /root/ASF/ASFBot-master/ASFBot-master/requirements.txt --break-system-packages
 EOF
 
@@ -82,17 +92,17 @@ setup_shortcuts() {
     mkdir ~/.shortcuts
     cd .shortcuts
 
-    curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/ASF.sh -o ASF.sh
-    curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/ASFBot.sh -o ASFBot.sh
-    curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/query_minecraft.sh -o query_minecraft.sh
+    curl -H "Authorization: token $AUTH_TOKEN" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/ASF.sh -o ASF.sh
+    curl -H "Authorization: token $AUTH_TOKEN" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/ASFBot.sh -o ASFBot.sh
+    curl -H "Authorization: token $AUTH_TOKEN" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/query_minecraft.sh -o query_minecraft.sh
 
     cd ~
 }
 
 # Функция: Установка Zsh
 install_zsh() {
-    curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/removezsh.sh -o removezsh.sh && chmod +x removezsh.sh
-    curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/zsh.sh -o zsh.sh && chmod +x zsh.sh && bash zsh.sh
+    curl -H "Authorization: token $AUTH_TOKEN" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/removezsh.sh -o removezsh.sh && chmod +x removezsh.sh
+    curl -H "Authorization: token $AUTH_TOKEN" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/zsh.sh -o zsh.sh && chmod +x zsh.sh && bash zsh.sh
 }
 
 # Функция: Установка lolcat
@@ -110,15 +120,15 @@ install_lolcat() {
 # Функция: Установка фона и шрифта
 setup_font_and_theme() {
     cd .termux
-    curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/font.ttf -o font.ttf
-    curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/colors.properties -o colors.properties
+    curl -H "Authorization: token $AUTH_TOKEN" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/font.ttf -o font.ttf
+    curl -H "Authorization: token $AUTH_TOKEN" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/colors.properties -o colors.properties
     cd ~
 }
 
 # Функция: Установка rish
 setup_rish() {
-    curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/rish -o rish
-    curl -H "Authorization: token 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" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/rish_shizuku.dex -o rish_shizuku.dex
+    curl -H "Authorization: token $AUTH_TOKEN" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/rish -o rish
+    curl -H "Authorization: token $AUTH_TOKEN" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/rish_shizuku.dex -o rish_shizuku.dex
 }
 
 # Основной скрипт
@@ -128,13 +138,13 @@ choose_distro
 install_termux_packages
 install_distro
 setup_asf_in_distro
-//install_mcrcon
-//install_python_modules
+install_mcrcon
+install_python_modules
 setup_shortcuts
-//install_zsh
-//install_lolcat
-//setup_font_and_theme
-//setup_rish
+install_zsh
+install_lolcat
+setup_font_and_theme
+setup_rish
 
 # Запуск Zsh
-//exec zsh
+exec zsh
