@@ -49,8 +49,8 @@ install_termux_packages() {
     yes | pkg upgrade -y
     pkg install -y proot-distro android-tools git make clang python termux-tools neofetch ruby openssh build-essential ffmpeg tor
     apt install php wget -y
-//    gem update
-//    gem update --system 3.5.23
+    gem update
+    gem update --system 3.5.23
 }
 
 # Функция: Установка выбранного дистрибутива
@@ -147,17 +147,17 @@ setup_rish() {
 # Основной блок скрипта
 setup_storage
 choose_distro
-//change_repo
+change_repo
 install_termux_packages
 install_distro
 setup_asf_in_distro
-//install_mcrcon
-//install_python_modules
+install_mcrcon
+install_python_modules
 setup_shortcuts
-//install_zsh
-//install_lolcat
-//setup_font_and_theme
-//setup_rish
+install_zsh
+install_lolcat
+setup_font_and_theme
+setup_rish
 
 # Запуск Zsh
-//exec zsh
+exec zsh
