@@ -6,12 +6,12 @@ AUTH_TOKEN="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"
 # Функция: Настройка хранилища
 setup_storage() {
     termux-setup-storage
+    echo "Ожидание 5 секунд для завершения..."
     sleep 5
-}
-
-# Функция: Изменение репозиториев Termux
-change_repo() {
-    termux-change-repo
+    for i in {5..1}; do
+        echo "Осталось: $i секунд..."
+        sleep 1
+    done
 }
 
 # Функция: Выбор дистрибутива
@@ -29,6 +29,19 @@ choose_distro() {
         echo "Некорректный ввод. По умолчанию будет установлен Ubuntu."
         distro_name="ubuntu"
     fi
+
+    # Таймер после выбора дистрибутива
+    echo "Ожидание 5 секунд перед изменением репозиториев..."
+    sleep 5
+    for i in {5..1}; do
+        echo "Осталось: $i секунд..."
+        sleep 1
+    done
+}
+
+# Функция: Изменение репозиториев Termux
+change_repo() {
+    termux-change-repo
 }
 
 # Функция: Установка базовых пакетов Termux
@@ -131,10 +144,10 @@ setup_rish() {
     curl -H "Authorization: token $AUTH_TOKEN" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/rish_shizuku.dex -o rish_shizuku.dex
 }
 
-# Основной скрипт
+# Основной блок скрипта
 setup_storage
-change_repo
 choose_distro
+change_repo
 install_termux_packages
 install_distro
 setup_asf_in_distro
