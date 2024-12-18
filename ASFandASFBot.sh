@@ -155,7 +155,7 @@ install_distro
 setup_asf_in_distro
 //install_mcrcon
 //install_python_modules
-//setup_shortcuts
+setup_shortcuts
 //install_zsh
 //install_lolcat
 //setup_font_and_theme
