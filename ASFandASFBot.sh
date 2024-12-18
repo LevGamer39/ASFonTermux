@@ -66,6 +66,7 @@ setup_asf_in_distro() {
 
     proot-distro login $distro_name <<EOF
         apt update && apt upgrade -y
+        apt install libicu-dev -y
         ln -fs /usr/share/zoneinfo/Europe/Kaliningrad /etc/localtime
         dpkg-reconfigure -f noninteractive tzdata
 
