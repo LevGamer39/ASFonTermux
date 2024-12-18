@@ -159,4 +159,4 @@ setup_shortcuts
 //setup_rish
 
 # Запуск Zsh
-exec zsh
+//exec zsh
