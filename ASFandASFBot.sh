@@ -70,7 +70,7 @@ setup_asf_in_distro() {
         dpkg-reconfigure -f noninteractive tzdata
 
         # Установка .NET вручную
-        wget https://dot.net/v1/dotnet-install.sh
+wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
         chmod +x dotnet-install.sh
         ./dotnet-install.sh --channel 9.0
         echo 'export PATH=\$HOME/.dotnet:\$PATH' >> ~/.bashrc
