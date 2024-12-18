@@ -7,7 +7,7 @@ AUTH_TOKEN="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"
 setup_storage() {
     termux-setup-storage
     echo "Ожидание 5 секунд для завершения..."
-    sleep 5
+    sleep 1
     for i in {5..1}; do
         echo "Осталось: $i секунд..."
         sleep 1
@@ -32,7 +32,7 @@ choose_distro() {
 
     # Таймер после выбора дистрибутива
     echo "Ожидание 5 секунд перед изменением репозиториев..."
-    sleep 5
+    sleep 1
     for i in {5..1}; do
         echo "Осталось: $i секунд..."
         sleep 1
