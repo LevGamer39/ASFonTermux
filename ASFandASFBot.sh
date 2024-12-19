@@ -100,6 +100,11 @@ install_python_modules() {
     pip install mcstatus==6.5.0 colorama yt-dlp
 }
 
+# Функция: Установка query_minecraft
+query_minecraft() {
+curl -H "Authorization: token $AUTH_TOKEN" -sL https://raw.githubusercontent.com/Levk39/ASFonTermux/refs/heads/main/query_minecraft.py -o query_minecraft.py
+}
+
 # Функция: Настройка ярлыков
 setup_shortcuts() {
     mkdir ~/.shortcuts
@@ -145,19 +150,20 @@ setup_rish() {
 }
 
 # Основной блок скрипта
-setup_storage
-choose_distro
-change_repo
-install_termux_packages
-install_distro
-setup_asf_in_distro
-install_mcrcon
-install_python_modules
-setup_shortcuts
-install_zsh
-install_lolcat
-setup_font_and_theme
-setup_rish
+//setup_storage
+//choose_distro
+//change_repo
+//install_termux_packages
+//install_distro
+//setup_asf_in_distro
+//install_mcrcon
+//install_python_modules
+query_minecraft
+//setup_shortcuts
+//install_zsh
+//install_lolcat
+//setup_font_and_theme
+//setup_rish
 
 # Запуск Zsh
-exec zsh
+//exec zsh
